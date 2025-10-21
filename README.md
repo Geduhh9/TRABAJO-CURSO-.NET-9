@@ -1,4 +1,5 @@
-### 🐞 Corrección de errores recientes
+### 🐞 TRABAJO FINAL .NET 9
+## Responsable: VILLAVICENCIO QUITO, GUILLERMO ELIAS.
 
 - **Instructor “Todos” no filtraba**  
 - **Paginado que no avanzaba**  
