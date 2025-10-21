@@ -1,9 +1,27 @@
-### 🐞 TRABAJO FINAL .NET 9
-## Responsable: VILLAVICENCIO QUITO, GUILLERMO ELIAS.
+# Trabajo Final – .NET 9
 
-- **Instructor “Todos” no filtraba**  
-- **Paginado que no avanzaba**  
-- **La fecha no mostraba el día actual, sino dd/mm/YYYY**  
-- **Se volvió a realizar el botón de reporte de talleres en pdf ahora con imagen**
-- **Mejora del menú Reportes "Talleres por Mes"**  
-- **Se cambio el look and feel del proyecto utilizando otro tema**  
+### Responsable: **Villavicencio Quito, Guillermo Elías**
+
+---
+
+## Resumen de Mejoras y Correcciones
+
+### - Corrección del filtro de instructores
+Se solucionó un problema donde la opción **“Todos”** no aplicaba el filtrado correctamente.
+
+### - Optimización del sistema de paginación
+Se corrigió el error que impedía avanzar entre las páginas de resultados, garantizando una navegación fluida.
+
+### - Actualización del formato de fecha
+La fecha ahora muestra correctamente el **día actual**, antes el combo solo mostraba **dd/MM/yyyy**.
+
+### - Reimplementación del reporte en PDF
+Se rediseñó el **botón de generación de reportes de talleres en formato PDF**, incorporando **imágenes** y mejorando la presentación del documento final.
+
+### - Mejora del módulo “Talleres por Mes”
+Se actualizó la sección **Reportes → Talleres por Mes**, optimizando la interfaz de usuario y la experiencia de navegación.
+
+### - Actualización del estilo visual (Look & Feel)
+Se renovó por completo la apariencia del proyecto aplicando un **nuevo tema visual moderno**, con una estética más limpia, coherente y profesional.
+
+---
