@@ -1,0 +1,97 @@
+﻿@page "/taller/list"
+@inject ITallerProxy Proxy
+@inject IToastService ToastService
+@inject IJSRuntime JsRuntime
+@inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
+@inject SweetAlertService Swal
+
+<div class="row mb-3 mt-3">
+    <div class="col">
+        <div class="mb-2">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" id="nombre" class="form-control" placeholder="Nombre del taller..."
+                @bind-value="Nombre" />
+        </div>
+    </div>
+    <div class="col-3">
+        <label for="categoria" class="form-label">Categoría</label>
+        <InputSelect id="categoria" class="form-select" @bind-Value="CategoriaId">
+            <option value="">-- Seleccione --</option>
+            @foreach (var categoria in Categorias)
+            {
+                <option value="@categoria.Id">@categoria.Nombre</option>
+            }
+        </InputSelect>
+    </div>
+    <div class="col-3">
+        <label for="situacion" class="form-label">Situación</label>
+        <InputSelect id="situacion" class="form-select" @bind-Value="Situacion">
+            <option value="">-- Seleccione --</option>
+            @foreach (var item in Situaciones)
+            {
+                <option value="@item.Codigo">@item.Descripcion</option>
+            }
+        </InputSelect>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-3">
+        <button type="button" class="btn btn-primary" @onclick="OnRefresh"><i
+                class="bi bi-search me-1"></i>Buscar</button>
+    </div>
+    <div class="col-3">
+        <button type="button" class="btn btn-outline-primary" @onclick="OnLimpiar"><i
+                                                                                       class="bi bi-eraser-fill me-1"></i>Limpiar</button>
+    </div>
+    <div class="col">
+        <button type="button" class="btn btn-primary" @onclick="OnNuevo"><i class="bi bi-plus-circle me-1"></i>Nuevo</button>
+    </div>
+</div>
+
+<Grid @ref="Grilla" TItem="TallerDtoResponse" Class="table table-hover table-bordered table-striped" AllowPaging="true"
+      AllowSorting="true" Responsive="true" DataProvider="OnReadData" HeaderRowCssClass="table-primary"
+      PageSizeSelectorVisible="true" PageSize="PageSize">
+    <GridColumn TItem="TallerDtoResponse" PropertyName="@nameof(TallerDtoResponse.Taller)" HeaderText="Nombre"
+        Sortable="true">
+        @context.Taller
+    </GridColumn>
+    <GridColumn TItem="TallerDtoResponse" PropertyName="@nameof(TallerDtoResponse.Categoria)" HeaderText="Categoría"
+        Sortable="true">
+        @context.Categoria
+    </GridColumn>
+    <GridColumn TItem="TallerDtoResponse" PropertyName="@nameof(TallerDtoResponse.Instructor)" HeaderText="Instructor"
+        Sortable="true">
+        @context.Instructor
+    </GridColumn>
+    <GridColumn TItem="TallerDtoResponse" PropertyName="@nameof(TallerDtoResponse.Fecha)" HeaderText="Fecha"
+        Sortable="true">
+        @context.Fecha
+    </GridColumn>
+    <GridColumn TItem="TallerDtoResponse" PropertyName="@nameof(TallerDtoResponse.Situacion)" HeaderText="Situación"
+                Sortable="true">
+        @context.Situacion
+    </GridColumn>
+    <GridColumn TItem="TallerDtoResponse" HeaderText="Acciones">
+        <button type="button" class="btn" @onclick="() => OnEditar(context.Id)">
+            <i class="bi bi-pencil-fill"></i>
+        </button>
+        <button type="button" class="btn" @onclick="() => OnEliminar(context.Id)">
+            <i class="bi bi-trash-fill"></i>
+        </button>
+    </GridColumn>
+</Grid>
+
+<div class="row mt-3 mb-3">
+    <div class="col">
+        <button class="btn btn-danger" @onclick="OnExportarPdf"><i class="bi bi-file-earmark-pdf-fill me-1"></i>Exportar
+            PDF</button>
+    </div>
+    <div class="col">
+        <button class="btn btn-success" @onclick="OnExportarExcel"><i class="bi bi-file-excel me-1"></i>Exportar
+            Excel</button>
+    </div>
+</div>
+
+
+<LoadingComponent IsLoading="IsLoading" />
